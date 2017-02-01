@@ -30,10 +30,12 @@ export const DIRECTORIES = uniq([
 export const EXTENSIONS = ['desktop']
 
 export const openApp = ({ exec }) => {
-  // Replace %u and other % arguments in exec script
-  // https://github.com/KELiON/cerebro/pull/62#issuecomment-276511320
-  const cmd = exec.replace(/%./g, '')
-  shellCommand(cmd)
+  if (exec) {
+    // Replace %u and other % arguments in exec script
+    // https://github.com/KELiON/cerebro/pull/62#issuecomment-276511320
+    const cmd = exec.replace(/%./g, '')
+    shellCommand(cmd)
+  }
 }
 
 const parseDesktopFile = (filePath, mapping) => {
