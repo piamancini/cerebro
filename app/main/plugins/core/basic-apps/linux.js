@@ -2,6 +2,7 @@ import { remote } from 'electron'
 import path from 'path'
 import fs from 'fs'
 import uniq from 'lodash/uniq'
+import flatten from 'lodash/flatten'
 import { shellCommand } from 'cerebro-tools'
 
 let appDirs = [
@@ -88,14 +89,14 @@ export const formatPath = (filePath) => {
     description: 'Comment',
     exec: 'Exec',
     hidden: 'NoDisplay',
-    icon: 'Icon',
+    icon: 'Icon'
   })
   const filename = path.basename(filePath)
   console.log(parsedData.icon, findIcon(parsedData.icon))
   return {
     ...parsedData,
     filename,
-    icon: findIcon(parsedData.icon)
+    icon: findIcon(parsedData.icon),
     hidden: !!parsedData.hidden,
     id: getId(filePath),
     name: parsedData.name || filename.replace(/\.(desktop)/, ''),
