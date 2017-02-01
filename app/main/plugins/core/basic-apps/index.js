@@ -14,11 +14,11 @@ const fn = ({ term, actions, display }) => {
   const result = search(appsList, term, toString).map(app => {
     const { id, path, name, description, icon } = app
     return {
+      icon,
       id: id || path,
       title: name,
       term: name,
       subtitle: description || path,
-      icon: icon,
       clipboard: path,
       onKeyDown: (event) => {
         if (event.ctrlKey && event.keyCode === 82) {

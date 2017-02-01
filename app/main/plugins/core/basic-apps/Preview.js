@@ -12,9 +12,9 @@ export default class Preview extends Component {
     const { path, name, icon } = this.props
     return (
       <div>
-        { icon &&
+        {icon &&
           <div className={styles.previewIcon}>
-            <img src={icon} />
+            <img src={icon} alt="" />
           </div>
         }
         <div className={styles.previewName}>{name}</div>

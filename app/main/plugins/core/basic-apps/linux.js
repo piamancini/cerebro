@@ -31,11 +31,12 @@ const iconResolutions = [
 ]
 
 // Directories when we are trying to find an icon
-const iconDirs = uniq(flatten(
-  iconResolutions.map(resolution => (
+const iconDirs = uniq(flatten([
+  ...iconResolutions.map(resolution => (
     appDirs.map(dir => path.join(dir, 'icons', 'hicolor', resolution))
-  ))
-)).filter(fs.existsSync)
+  )),
+  path.join('/usr', 'share', 'pixmaps')
+])).filter(fs.existsSync)
 
 export const DIRECTORIES = uniq([
   ...appDirs.map(dir => path.join(dir, 'applications')),
