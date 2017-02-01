@@ -12,12 +12,13 @@ let appsList = []
 
 const fn = ({ term, actions, display }) => {
   const result = search(appsList, term, toString).map(app => {
-    const { id, path, name, description } = app
+    const { id, path, name, description, icon } = app
     return {
       id: id || path,
       title: name,
       term: name,
       subtitle: description || path,
+      icon: icon,
       clipboard: path,
       onKeyDown: (event) => {
         if (event.ctrlKey && event.keyCode === 82) {
@@ -27,7 +28,7 @@ const fn = ({ term, actions, display }) => {
         }
       },
       onSelect: () => openApp(app),
-      getPreview: () => <Preview name={name} path={path} />
+      getPreview: () => <Preview name={name} path={path} icon={icon} />
     }
   })
   display(result)
