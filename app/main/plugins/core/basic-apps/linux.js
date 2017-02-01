@@ -63,12 +63,14 @@ export const formatPath = (filePath) => {
   const parsedData = parseDesktopFile(filePath, {
     name: 'Name',
     description: 'Comment',
-    exec: 'Exec'
+    exec: 'Exec',
+    hidden: 'NoDisplay'
   })
   const filename = path.basename(filePath)
   return {
     ...parsedData,
     filename,
+    hidden: !!parsedData.hidden,
     id: getId(filePath),
     name: parsedData.name || filename.replace(/\.(desktop)/, ''),
     path: filePath
